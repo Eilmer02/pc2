@@ -1,0 +1,682 @@
+/* ==================== VISTOS BUENOS CSS - COMPLETO Y ROBUSTO ==================== */
+/* Sistema de Gestión Documental - Constructora Vial S.A. */
+/* @version 3.0.0 */
+/* @description CSS completo con máxima especificidad */
+
+/* ==================== CSS CUSTOM PROPERTIES ==================== */
+:root {
+    /* === COLORES PRINCIPALES === */
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+    --primary-200: #bfdbfe;
+    --primary-300: #93c5fd;
+    --primary-400: #60a5fa;
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    --primary-700: #1d4ed8;
+    --primary-800: #1e40af;
+    --primary-900: #1e3a8a;
+    
+    /* === COLORES DE ESTADO === */
+    --success-50: #ecfdf5;
+    --success-100: #d1fae5;
+    --success-500: #10b981;
+    --success-600: #059669;
+    --success-700: #047857;
+    
+    --warning-50: #fffbeb;
+    --warning-100: #fef3c7;
+    --warning-500: #f59e0b;
+    --warning-600: #d97706;
+    
+    --danger-50: #fef2f2;
+    --danger-100: #fee2e2;
+    --danger-500: #ef4444;
+    --danger-600: #dc2626;
+    
+    --info-50: #f0f9ff;
+    --info-100: #e0f2fe;
+    --info-500: #06b6d4;
+    --info-600: #0891b2;
+    
+    /* === GRISES === */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    
+    /* === SOMBRAS === */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    /* === RADIUS === */
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
+    
+    /* === TRANSICIONES === */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* === ESPACIADO === */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    
+    /* === TIPOGRAFÍA === */
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+}
+
+/* ==================== RESET PARA SOBRESCRIBIR BOOTSTRAP ==================== */
+.vistos-buenos-container * {
+    box-sizing: border-box;
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translate3d(0, 20px, 0); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translate3d(0, 0, 0); 
+    }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translate3d(0, 10px, 0); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translate3d(0, 0, 0); 
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ==================== LAYOUT BASE ==================== */
+.main {
+    background: var(--gray-50) !important;
+    min-height: 100vh !important;
+    padding: var(--space-6) !important;
+}
+
+.vistos-buenos-container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 var(--space-6) !important;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* ==================== HEADER ==================== */
+.vistos-buenos-container .page-header {
+    border-bottom: 1px solid var(--gray-200) !important;
+    padding-bottom: var(--space-6) !important;
+    margin-bottom: var(--space-8) !important;
+    position: relative !important;
+}
+
+.vistos-buenos-container .page-header::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -1px !important;
+    left: 0 !important;
+    width: 60px !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-600)) !important;
+    border-radius: 0.25rem !important;
+    animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+.vistos-buenos-container .page-title {
+    color: var(--primary-600) !important;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-500)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-size: var(--font-size-3xl) !important;
+    font-weight: var(--font-weight-bold) !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+.vistos-buenos-container .page-subtitle {
+    font-size: var(--font-size-lg) !important;
+    margin-top: var(--space-2) !important;
+    color: var(--gray-600) !important;
+    font-weight: var(--font-weight-medium) !important;
+    line-height: 1.5 !important;
+}
+
+/* ==================== ESTADÍSTICAS - FORZAR ESTILOS ==================== */
+.vistos-buenos-container .stats-grid,
+.vistos-buenos-container .row.stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: var(--space-6) !important;
+    margin-bottom: var(--space-8) !important;
+    padding: var(--space-4) 0 !important;
+}
+
+.vistos-buenos-container .stats-card {
+    background: white !important;
+    padding: var(--space-6) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--space-4) !important;
+    transition: var(--transition) !important;
+    border: 1px solid var(--gray-200) !important;
+    position: relative !important;
+    transform: translateZ(0) !important;
+    min-height: 120px !important;
+}
+
+.vistos-buenos-container .stats-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, var(--primary-400), var(--primary-600)) !important;
+    transform: scaleX(0) !important;
+    transform-origin: left !important;
+    transition: var(--transition) !important;
+}
+
+.vistos-buenos-container .stats-card:hover {
+    transform: translate3d(0, -4px, 0) !important;
+    box-shadow: var(--shadow-lg) !important;
+    z-index: 10 !important;
+}
+
+.vistos-buenos-container .stats-card:hover::before {
+    transform: scaleX(1) !important;
+}
+
+.vistos-buenos-container .stats-icon {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: var(--radius-lg) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+    font-size: var(--font-size-xl) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+}
+
+.vistos-buenos-container .stats-icon.bg-warning {
+    background: linear-gradient(135deg, var(--warning-500), var(--warning-600)) !important;
+}
+
+.vistos-buenos-container .stats-icon.bg-success {
+    background: linear-gradient(135deg, var(--success-500), var(--success-600)) !important;
+}
+
+.vistos-buenos-container .stats-icon.bg-danger {
+    background: linear-gradient(135deg, var(--danger-500), var(--danger-600)) !important;
+}
+
+.vistos-buenos-container .stats-icon.bg-info {
+    background: linear-gradient(135deg, var(--info-500), var(--info-600)) !important;
+}
+
+.vistos-buenos-container .stats-icon::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1)) !important;
+    transform: translateX(-100%) !important;
+    transition: var(--transition) !important;
+}
+
+.vistos-buenos-container .stats-card:hover .stats-icon::before {
+    transform: translateX(100%) !important;
+}
+
+.vistos-buenos-container .stats-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+.vistos-buenos-container .stats-content h3 {
+    font-size: var(--font-size-3xl) !important;
+    font-weight: var(--font-weight-bold) !important;
+    margin: 0 !important;
+    color: var(--gray-900) !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+}
+
+.vistos-buenos-container .stats-content p {
+    margin: 0 !important;
+    color: var(--gray-600) !important;
+    font-weight: var(--font-weight-medium) !important;
+    font-size: var(--font-size-sm) !important;
+    line-height: 1.5 !important;
+    white-space: nowrap !important;
+}
+
+/* ==================== CARDS GENERALES ==================== */
+.vistos-buenos-container .card-animated,
+.vistos-buenos-container .card {
+    background: white !important;
+    border: 1px solid var(--gray-200) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: var(--transition) !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+.vistos-buenos-container .card-animated::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 2px !important;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-600)) !important;
+    transform: scaleX(0) !important;
+    transform-origin: left !important;
+    transition: var(--transition) !important;
+}
+
+.vistos-buenos-container .card-animated:hover {
+    transform: translate3d(0, -2px, 0) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.vistos-buenos-container .card-animated:hover::before {
+    transform: scaleX(1) !important;
+}
+
+.vistos-buenos-container .card-header {
+    background: linear-gradient(135deg, var(--gray-50), var(--gray-100)) !important;
+    border-bottom: 1px solid var(--gray-200) !important;
+    padding: var(--space-5) !important;
+}
+
+.vistos-buenos-container .card-body {
+    padding: var(--space-6) !important;
+}
+
+.vistos-buenos-container .card-title {
+    color: var(--gray-800) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    margin-bottom: 0 !important;
+}
+
+/* ==================== FILTROS ==================== */
+.vistos-buenos-container .filters-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: var(--space-4) !important;
+    margin-bottom: var(--space-6) !important;
+}
+
+.vistos-buenos-container .form-control,
+.vistos-buenos-container .form-select {
+    border: 2px solid var(--gray-300) !important;
+    border-radius: var(--radius) !important;
+    padding: var(--space-3) var(--space-4) !important;
+    transition: var(--transition-fast) !important;
+    background: white !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+    line-height: 1.5 !important;
+}
+
+.vistos-buenos-container .form-control:focus,
+.vistos-buenos-container .form-select:focus {
+    border-color: var(--primary-500) !important;
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1) !important;
+    outline: none !important;
+    transform: translate3d(0, -1px, 0) !important;
+}
+
+.vistos-buenos-container .form-control:hover:not(:focus),
+.vistos-buenos-container .form-select:hover:not(:focus) {
+    border-color: var(--gray-400) !important;
+}
+
+/* ==================== BOTONES ==================== */
+.vistos-buenos-container .btn {
+    border-radius: var(--radius) !important;
+    font-weight: var(--font-weight-medium) !important;
+    padding: var(--space-3) var(--space-5) !important;
+    transition: var(--transition) !important;
+    border: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    line-height: 1.5 !important;
+    cursor: pointer !important;
+}
+
+.vistos-buenos-container .btn::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+    transition: var(--transition) !important;
+}
+
+.vistos-buenos-container .btn:hover {
+    transform: translate3d(0, -2px, 0) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.vistos-buenos-container .btn:hover::before {
+    left: 100% !important;
+}
+
+.vistos-buenos-container .btn-primary {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600)) !important;
+    color: white !important;
+}
+
+.vistos-buenos-container .btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-700)) !important;
+    color: white !important;
+}
+
+.vistos-buenos-container .btn-outline-primary {
+    border: 2px solid var(--primary-500) !important;
+    color: var(--primary-600) !important;
+    background: white !important;
+}
+
+.vistos-buenos-container .btn-outline-primary:hover {
+    background: var(--primary-500) !important;
+    color: white !important;
+    border-color: var(--primary-500) !important;
+}
+
+.vistos-buenos-container .btn-outline-secondary {
+    border: 2px solid var(--gray-300) !important;
+    color: var(--gray-700) !important;
+    background: white !important;
+}
+
+.vistos-buenos-container .btn-outline-secondary:hover {
+    background: var(--gray-100) !important;
+    border-color: var(--gray-400) !important;
+}
+
+/* ==================== TABLA ==================== */
+.vistos-buenos-container .table-vistos-buenos {
+    background: white !important;
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 1px solid var(--gray-200) !important;
+    width: 100% !important;
+}
+
+.vistos-buenos-container .table-vistos-buenos thead th {
+    background: linear-gradient(135deg, var(--gray-50), var(--gray-100)) !important;
+    color: var(--gray-700) !important;
+    border: none !important;
+    font-weight: var(--font-weight-semibold) !important;
+    font-size: var(--font-size-xs) !important;
+    padding: var(--space-4) var(--space-5) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+.vistos-buenos-container .table-vistos-buenos tbody td {
+    font-size: var(--font-size-sm) !important;
+    padding: var(--space-4) var(--space-5) !important;
+    border-color: var(--gray-200) !important;
+    vertical-align: middle !important;
+}
+
+.vistos-buenos-container .table-vistos-buenos tbody tr {
+    border: none !important;
+    transition: var(--transition-fast) !important;
+    position: relative !important;
+}
+
+.vistos-buenos-container .table-vistos-buenos tbody tr::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 3px !important;
+    background: var(--primary-500) !important;
+    transform: scaleY(0) !important;
+    transition: var(--transition) !important;
+}
+
+.vistos-buenos-container .table-vistos-buenos tbody tr:hover {
+    background: var(--primary-50) !important;
+}
+
+.vistos-buenos-container .table-vistos-buenos tbody tr:hover::before {
+    transform: scaleY(1) !important;
+}
+
+/* ==================== ESTADOS ==================== */
+.vistos-buenos-container .estado-pendiente,
+.vistos-buenos-container .badge.estado-pendiente {
+    background: linear-gradient(135deg, var(--warning-500), var(--warning-600)) !important;
+    color: white !important;
+    padding: var(--space-1) var(--space-3) !important;
+    border-radius: var(--radius-full) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
+    box-shadow: var(--shadow-xs) !important;
+    border: none !important;
+}
+
+.vistos-buenos-container .estado-aprobado,
+.vistos-buenos-container .badge.estado-aprobado {
+    background: linear-gradient(135deg, var(--success-500), var(--success-600)) !important;
+    color: white !important;
+    padding: var(--space-1) var(--space-3) !important;
+    border-radius: var(--radius-full) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
+    box-shadow: var(--shadow-xs) !important;
+    border: none !important;
+}
+
+.vistos-buenos-container .estado-observado,
+.vistos-buenos-container .badge.estado-observado {
+    background: linear-gradient(135deg, var(--danger-500), var(--danger-600)) !important;
+    color: white !important;
+    padding: var(--space-1) var(--space-3) !important;
+    border-radius: var(--radius-full) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
+    box-shadow: var(--shadow-xs) !important;
+    border: none !important;
+}
+
+/* ==================== LOADING ==================== */
+.vistos-buenos-container .loading-container {
+    text-align: center !important;
+    padding: var(--space-12) !important;
+    color: var(--gray-500) !important;
+}
+
+.vistos-buenos-container .loading-spinner {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    border: 3px solid var(--gray-300) !important;
+    border-top: 3px solid var(--primary-500) !important;
+    border-radius: 50% !important;
+    animation: spin 1s linear infinite !important;
+    margin: 0 auto var(--space-4) !important;
+}
+
+/* ==================== EMPTY STATE ==================== */
+.vistos-buenos-container .empty-state {
+    text-align: center !important;
+    padding: var(--space-12) !important;
+    color: var(--gray-500) !important;
+}
+
+.vistos-buenos-container .empty-icon {
+    font-size: 4rem !important;
+    color: var(--gray-300) !important;
+    margin-bottom: var(--space-4) !important;
+}
+
+.vistos-buenos-container .empty-state h5 {
+    color: var(--gray-700) !important;
+    margin-bottom: var(--space-2) !important;
+    font-weight: var(--font-weight-semibold) !important;
+}
+
+/* ==================== MODALES ==================== */
+.modal-animated .modal-content {
+    border: none !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-xl) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.modal-animated .modal-header {
+    border-bottom: 1px solid var(--gray-200) !important;
+    background: linear-gradient(135deg, var(--gray-50), white) !important;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+}
+
+.modal-animated .modal-title {
+    color: var(--gray-800) !important;
+    font-weight: var(--font-weight-semibold) !important;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .vistos-buenos-container {
+        padding: 0 var(--space-4) !important;
+    }
+    
+    .vistos-buenos-container .stats-grid,
+    .vistos-buenos-container .row.stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-4) !important;
+    }
+    
+    .vistos-buenos-container .filters-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-3) !important;
+    }
+    
+    .vistos-buenos-container .page-title {
+        font-size: var(--font-size-2xl) !important;
+    }
+    
+    .vistos-buenos-container .stats-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: var(--space-3) !important;
+    }
+    
+    .vistos-buenos-container .stats-icon {
+        width: 48px !important;
+        height: 48px !important;
+    }
+}
+
+/* ==================== FALLBACKS PARA NAVEGADORES ANTIGUOS ==================== */
+@supports not (backdrop-filter: blur(8px)) {
+    .modal-animated .modal-content {
+        background: white !important;
+    }
+}
+
+/* ==================== UTILIDADES ==================== */
+.vistos-buenos-container .text-gradient {
+    color: var(--primary-600) !important;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-500)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+.vistos-buenos-container .hover-lift {
+    transition: var(--transition) !important;
+}
+
+.vistos-buenos-container .hover-lift:hover {
+    transform: translate3d(0, -2px, 0) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* ==================== FORZAR DISPLAY PARA GRID DE ESTADÍSTICAS ==================== */
+.vistos-buenos-container .row.stats-grid .col-xl-3,
+.vistos-buenos-container .row.stats-grid .col-md-6 {
+    display: contents !important;
+}
+
+.vistos-buenos-container .row.stats-grid .col-xl-3 .stats-card,
+.vistos-buenos-container .row.stats-grid .col-md-6 .stats-card {
+    display: flex !important;
+}
+
+/* ==================== ACCESIBILIDAD ==================== */
+@media (prefers-reduced-motion: reduce) {
+    .vistos-buenos-container * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.vistos-buenos-container .btn:focus-visible,
+.vistos-buenos-container .form-control:focus-visible,
+.vistos-buenos-container .form-select:focus-visible {
+    outline: 2px solid var(--primary-500) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgb(59 130 246 / 0.1) !important;
+}

@@ -1,0 +1,1296 @@
+/* ==================== SEGUIMIENTO CSS - OPTIMIZADO ==================== */
+/* Sistema de Gestión Documental - Constructora Vial S.A. */
+/* @version 2.0.0 - OPTIMIZADO */
+/* @description CSS optimizado para módulo de seguimiento con mejoras de rendimiento */
+
+/* ==================== CSS VARIABLES OPTIMIZADAS ==================== */
+:root {
+    /* === COLORES PRINCIPALES === */
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    --primary-700: #1d4ed8;
+    
+    /* === COLORES DE ESTADO === */
+    --success-500: #10b981;
+    --success-600: #059669;
+    --warning-500: #f59e0b;
+    --warning-600: #d97706;
+    --danger-500: #ef4444;
+    --danger-600: #dc2626;
+    --info-500: #06b6d4;
+    --info-600: #0891b2;
+    
+    /* === GRISES === */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    
+    /* === SOMBRAS === */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    /* === ESPACIADO === */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    
+    /* === TRANSICIONES === */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* === BORDER RADIUS === */
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
+    
+    /* === Z-INDEX === */
+    --z-dropdown: 1000;
+    --z-modal: 1050;
+    --z-toast: 1080;
+}
+
+/* ==================== PERFORMANCE OPTIMIZATIONS ==================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.seguimiento-container {
+    contain: layout style;
+}
+
+/* Force GPU acceleration for animations */
+.card-animated,
+.stats-card,
+.kanban-card,
+.hover-lift {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ==================== ANIMACIONES OPTIMIZADAS ==================== */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translate3d(0, 20px, 0); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translate3d(0, 0, 0); 
+    }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translate3d(0, 10px, 0); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translate3d(0, 0, 0); 
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.02); 
+    }
+}
+
+@keyframes slideInRight {
+    from { 
+        opacity: 0; 
+        transform: translateX(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: -468px 0; }
+    100% { background-position: 468px 0; }
+}
+
+/* ==================== LAYOUT BASE ==================== */
+.main {
+    background: var(--gray-50) !important;
+    min-height: 100vh !important;
+    padding: var(--space-6) !important;
+}
+
+.seguimiento-container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 var(--space-6) !important;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* ==================== LOADING STATES ==================== */
+.loading {
+    cursor: wait;
+}
+
+.loading * {
+    pointer-events: none;
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+    border-radius: var(--radius);
+}
+
+/* ==================== HEADER OPTIMIZADO ==================== */
+.seguimiento-container .page-header {
+    border-bottom: 1px solid var(--gray-200) !important;
+    padding-bottom: var(--space-6) !important;
+    margin-bottom: var(--space-8) !important;
+    background: linear-gradient(135deg, var(--gray-50), white);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: var(--space-6);
+    margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) var(--space-8) calc(-1 * var(--space-6));
+    position: relative;
+}
+
+.seguimiento-container .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: var(--space-6);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-600));
+    border-radius: var(--radius);
+    animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+.seguimiento-container .page-title {
+    color: var(--primary-600) !important;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-500)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-size: 1.875rem !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+.seguimiento-container .page-title .bi-activity {
+    animation: pulse 2s ease-in-out infinite;
+    color: var(--primary-500) !important;
+    -webkit-text-fill-color: var(--primary-500) !important;
+}
+
+.seguimiento-container .page-subtitle {
+    font-size: 1.125rem !important;
+    margin-top: var(--space-2) !important;
+    color: var(--gray-600) !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+}
+
+/* ==================== ESTADÍSTICAS OPTIMIZADAS ==================== */
+.seguimiento-container .stats-section {
+    margin-bottom: var(--space-8) !important;
+}
+
+.seguimiento-container .stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: var(--space-6) !important;
+    padding: var(--space-4) 0 !important;
+}
+
+.seguimiento-container .stats-card {
+    background: white !important;
+    padding: var(--space-6) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--space-4) !important;
+    transition: var(--transition) !important;
+    border: 1px solid var(--gray-200) !important;
+    position: relative !important;
+    min-height: 120px !important;
+    overflow: hidden;
+}
+
+.seguimiento-container .stats-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-600));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.seguimiento-container .stats-card:hover {
+    transform: translate3d(0, -4px, 0) !important;
+    box-shadow: var(--shadow-lg) !important;
+    z-index: 10;
+}
+
+.seguimiento-container .stats-card:hover::before {
+    transform: scaleX(1);
+}
+
+.seguimiento-container .stats-icon {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: var(--radius-lg) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+    font-size: 1.25rem !important;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.seguimiento-container .stats-icon.bg-primary {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600)) !important;
+}
+
+.seguimiento-container .stats-icon.bg-success {
+    background: linear-gradient(135deg, var(--success-500), var(--success-600)) !important;
+}
+
+.seguimiento-container .stats-icon.bg-warning {
+    background: linear-gradient(135deg, var(--warning-500), var(--warning-600)) !important;
+}
+
+.seguimiento-container .stats-icon.bg-danger {
+    background: linear-gradient(135deg, var(--danger-500), var(--danger-600)) !important;
+}
+
+.seguimiento-container .stats-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+    transform: translateX(-100%);
+    transition: var(--transition);
+}
+
+.seguimiento-container .stats-card:hover .stats-icon::before {
+    transform: translateX(100%);
+}
+
+.seguimiento-container .stats-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.seguimiento-container .stats-content h3 {
+    font-size: 1.875rem !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    color: var(--gray-900) !important;
+    line-height: 1.2 !important;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.seguimiento-container .stats-content p {
+    margin: 0 !important;
+    color: var(--gray-600) !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    white-space: nowrap;
+}
+
+/* ==================== CARDS OPTIMIZADOS ==================== */
+.seguimiento-container .card-animated,
+.seguimiento-container .card {
+    background: white !important;
+    border: 1px solid var(--gray-200) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: var(--transition) !important;
+    overflow: hidden;
+    position: relative;
+}
+
+.seguimiento-container .card-animated::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-600));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.seguimiento-container .card-animated:hover {
+    transform: translate3d(0, -2px, 0) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.seguimiento-container .card-animated:hover::before {
+    transform: scaleX(1);
+}
+
+.seguimiento-container .card-header {
+    background: linear-gradient(135deg, var(--gray-50), var(--gray-100)) !important;
+    border-bottom: 1px solid var(--gray-200) !important;
+    padding: var(--space-5) !important;
+}
+
+.seguimiento-container .card-body {
+    padding: var(--space-6) !important;
+}
+
+.seguimiento-container .card-title {
+    color: var(--gray-800) !important;
+    font-weight: 600 !important;
+    margin-bottom: 0 !important;
+}
+
+/* ==================== FILTROS OPTIMIZADOS ==================== */
+.seguimiento-container .filters-section {
+    margin-bottom: var(--space-6) !important;
+}
+
+.seguimiento-container .filters-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    gap: var(--space-4) !important;
+    margin-bottom: var(--space-6) !important;
+}
+
+.seguimiento-container .filter-search {
+    grid-column: 1 / -1;
+}
+
+.seguimiento-container .form-control,
+.seguimiento-container .form-select {
+    border: 2px solid var(--gray-300) !important;
+    border-radius: var(--radius) !important;
+    padding: var(--space-3) var(--space-4) !important;
+    transition: var(--transition-fast) !important;
+    background: white !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+}
+
+.seguimiento-container .form-control:focus,
+.seguimiento-container .form-select:focus {
+    border-color: var(--primary-500) !important;
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1) !important;
+    outline: none !important;
+    transform: translate3d(0, -1px, 0) !important;
+}
+
+.seguimiento-container .form-control:hover:not(:focus),
+.seguimiento-container .form-select:hover:not(:focus) {
+    border-color: var(--gray-400) !important;
+}
+
+.seguimiento-container .form-control.is-invalid,
+.seguimiento-container .form-select.is-invalid {
+    border-color: var(--danger-500) !important;
+    box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1) !important;
+}
+
+.seguimiento-container .form-control.is-valid,
+.seguimiento-container .form-select.is-valid {
+    border-color: var(--success-500) !important;
+    box-shadow: 0 0 0 3px rgb(16 185 129 / 0.1) !important;
+}
+
+/* ==================== BOTONES OPTIMIZADOS ==================== */
+.seguimiento-container .btn {
+    border-radius: var(--radius) !important;
+    font-weight: 500 !important;
+    padding: var(--space-3) var(--space-5) !important;
+    transition: var(--transition) !important;
+    border: 2px solid transparent !important;
+    position: relative;
+    overflow: hidden;
+    line-height: 1.5;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.seguimiento-container .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition);
+}
+
+.seguimiento-container .btn:hover {
+    transform: translate3d(0, -2px, 0) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.seguimiento-container .btn:hover::before {
+    left: 100%;
+}
+
+.seguimiento-container .btn:active {
+    transform: translate3d(0, 0, 0) !important;
+}
+
+.seguimiento-container .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.seguimiento-container .btn-primary {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600)) !important;
+    color: white !important;
+    border-color: var(--primary-500) !important;
+}
+
+.seguimiento-container .btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-700)) !important;
+    color: white !important;
+    border-color: var(--primary-600) !important;
+}
+
+.seguimiento-container .btn-outline-primary {
+    border-color: var(--primary-500) !important;
+    color: var(--primary-600) !important;
+    background: white !important;
+}
+
+.seguimiento-container .btn-outline-primary:hover {
+    background: var(--primary-500) !important;
+    color: white !important;
+    border-color: var(--primary-500) !important;
+}
+
+.seguimiento-container .btn-outline-secondary {
+    border-color: var(--gray-300) !important;
+    color: var(--gray-700) !important;
+    background: white !important;
+}
+
+.seguimiento-container .btn-outline-secondary:hover {
+    background: var(--gray-100) !important;
+    border-color: var(--gray-400) !important;
+    color: var(--gray-800) !important;
+}
+
+.seguimiento-container .btn-outline-info {
+    border-color: var(--info-500) !important;
+    color: var(--info-600) !important;
+    background: white !important;
+}
+
+.seguimiento-container .btn-outline-info:hover {
+    background: var(--info-500) !important;
+    color: white !important;
+    border-color: var(--info-500) !important;
+}
+
+.seguimiento-container .btn-outline-success {
+    border-color: var(--success-500) !important;
+    color: var(--success-600) !important;
+    background: white !important;
+}
+
+.seguimiento-container .btn-outline-success:hover {
+    background: var(--success-500) !important;
+    color: white !important;
+    border-color: var(--success-500) !important;
+}
+
+.seguimiento-container .btn-success {
+    background: linear-gradient(135deg, var(--success-500), var(--success-600)) !important;
+    color: white !important;
+    border-color: var(--success-500) !important;
+}
+
+.seguimiento-container .btn-success:hover {
+    background: linear-gradient(135deg, var(--success-600), var(--success-500)) !important;
+    color: white !important;
+}
+
+/* Tamaños de botones */
+.seguimiento-container .btn-sm {
+    padding: var(--space-2) var(--space-3) !important;
+    font-size: 0.75rem !important;
+}
+
+.seguimiento-container .btn-lg {
+    padding: var(--space-4) var(--space-6) !important;
+    font-size: 1.125rem !important;
+}
+
+/* ==================== TABLA OPTIMIZADA ==================== */
+.seguimiento-container .table-responsive {
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 1px solid var(--gray-200) !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    min-height: 300px !important;
+}
+
+.seguimiento-container .table {
+    margin-bottom: 0 !important;
+    background: white !important;
+}
+
+.seguimiento-container .table thead th {
+    background: linear-gradient(135deg, var(--gray-800), var(--gray-900)) !important;
+    color: white !important;
+    border: none !important;
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+    padding: var(--space-4) var(--space-5) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    white-space: nowrap !important;
+    overflow: visible !important;
+}
+
+/* Anchos específicos para columnas problemáticas */
+.seguimiento-container .table th:nth-child(1) {
+    min-width: 220px !important; /* Documento */
+}
+
+.seguimiento-container .table th:nth-child(2) {
+    min-width: 150px !important; /* Proyecto */
+}
+
+.seguimiento-container .table th:nth-child(3) {
+    min-width: 180px !important; /* Responsable */
+}
+
+.seguimiento-container .table th:nth-child(4),
+.seguimiento-container .table th:nth-child(5),
+.seguimiento-container .table th:nth-child(6) {
+    min-width: 120px !important; /* Estado, Prioridad, Progreso */
+    width: auto !important;
+}
+
+.seguimiento-container .table th:nth-child(7),
+.seguimiento-container .table th:nth-child(8) {
+    min-width: 150px !important; /* Fechas */
+}
+
+.seguimiento-container .table th:nth-child(9) {
+    min-width: 120px !important; /* Acciones */
+}
+
+.seguimiento-container .table tbody td {
+    font-size: 0.875rem !important;
+    padding: var(--space-4) var(--space-5) !important;
+    border-color: var(--gray-200) !important;
+    vertical-align: middle !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+}
+
+.seguimiento-container .table tbody tr {
+    border: none !important;
+    transition: var(--transition-fast) !important;
+    position: relative;
+}
+
+.seguimiento-container .table tbody tr::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--primary-500);
+    transform: scaleY(0);
+    transition: var(--transition);
+}
+
+.seguimiento-container .table tbody tr:hover {
+    background: rgba(59, 130, 246, 0.05) !important;
+}
+
+.seguimiento-container .table tbody tr:hover::before {
+    transform: scaleY(1);
+}
+
+.seguimiento-container .table tbody tr.table-warning {
+    background: rgba(245, 158, 11, 0.1) !important;
+}
+
+.seguimiento-container .table tbody tr.table-warning:hover {
+    background: rgba(245, 158, 11, 0.15) !important;
+}
+
+/* ==================== BADGES Y ESTADOS ==================== */
+.seguimiento-container .badge {
+    padding: var(--space-1) var(--space-3) !important;
+    border-radius: var(--radius-full) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
+    border: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    display: inline-block !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: ellipsis !important;
+    min-width: 90px !important;
+    text-align: center !important;
+}
+
+.seguimiento-container .badge.bg-primary {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600)) !important;
+    color: white !important;
+    box-shadow: var(--shadow-xs) !important;
+}
+
+.seguimiento-container .badge.bg-success {
+    background: linear-gradient(135deg, var(--success-500), var(--success-600)) !important;
+    color: white !important;
+    box-shadow: var(--shadow-xs) !important;
+}
+
+.seguimiento-container .badge.bg-warning {
+    background: linear-gradient(135deg, var(--warning-500), var(--warning-600)) !important;
+    color: white !important;
+    box-shadow: var(--shadow-xs) !important;
+}
+
+.seguimiento-container .badge.bg-danger {
+    background: linear-gradient(135deg, var(--danger-500), var(--danger-600)) !important;
+    color: white !important;
+    box-shadow: var(--shadow-xs) !important;
+    animation: pulse 2s infinite !important;
+}
+
+.seguimiento-container .badge.bg-secondary {
+    background: linear-gradient(135deg, var(--gray-500), var(--gray-600)) !important;
+    color: white !important;
+    box-shadow: var(--shadow-xs) !important;
+}
+
+.seguimiento-container .badge.bg-light {
+    background: var(--gray-100) !important;
+    color: var(--gray-800) !important;
+    border: 1px solid var(--gray-300) !important;
+}
+
+/* Prioridades específicas */
+.seguimiento-container .text-danger {
+    color: var(--danger-600) !important;
+}
+
+.seguimiento-container .text-warning {
+    color: var(--warning-600) !important;
+}
+
+.seguimiento-container .text-muted {
+    color: var(--gray-500) !important;
+}
+
+.seguimiento-container .fw-bold {
+    font-weight: 700 !important;
+}
+
+.seguimiento-container .fw-semibold {
+    font-weight: 600 !important;
+}
+
+.seguimiento-container .fw-medium {
+    font-weight: 500 !important;
+}
+
+/* ==================== PROGRESS BARS ==================== */
+.seguimiento-container .progress {
+    height: 8px !important;
+    background: var(--gray-200) !important;
+    border-radius: var(--radius-full) !important;
+    overflow: hidden;
+    position: relative;
+}
+
+.seguimiento-container .progress-bar {
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-600)) !important;
+    border-radius: var(--radius-full) !important;
+    transition: width 0.6s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.seguimiento-container .progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+    animation: shimmer 2s infinite;
+}
+
+/* ==================== VISTA KANBAN OPTIMIZADA ==================== */
+.seguimiento-container .kanban-board {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: var(--space-6) !important;
+    min-height: 600px !important;
+    padding: var(--space-4) 0;
+}
+
+.seguimiento-container .kanban-column {
+    background: var(--gray-100) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: var(--space-4) !important;
+    min-height: 100%;
+    position: relative;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.seguimiento-container .kanban-column.drag-over {
+    border-color: var(--primary-500) !important;
+    background: rgba(59, 130, 246, 0.05) !important;
+    transform: scale(1.02);
+}
+
+.seguimiento-container .kanban-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: var(--space-4) !important;
+    padding: var(--space-3) var(--space-4) !important;
+    background: white !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-sm) !important;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.seguimiento-container .kanban-title {
+    font-weight: 600 !important;
+    color: var(--gray-800) !important;
+    margin: 0 !important;
+    font-size: 0.875rem !important;
+}
+
+.seguimiento-container .kanban-cards {
+    min-height: 200px;
+    position: relative;
+}
+
+.seguimiento-container .kanban-card {
+    background: white !important;
+    border-radius: var(--radius) !important;
+    padding: var(--space-4) !important;
+    margin-bottom: var(--space-3) !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 1px solid var(--gray-200) !important;
+    transition: var(--transition) !important;
+    cursor: grab !important;
+    position: relative;
+}
+
+.seguimiento-container .kanban-card:hover {
+    transform: translate3d(0, -2px, 0) !important;
+    box-shadow: var(--shadow-md) !important;
+    z-index: 10;
+}
+
+.seguimiento-container .kanban-card:active,
+.seguimiento-container .kanban-card.dragging {
+    cursor: grabbing !important;
+    transform: rotate(5deg) scale(1.05) !important;
+    z-index: 1000 !important;
+    opacity: 0.8 !important;
+}
+
+.seguimiento-container .kanban-card-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    margin-bottom: var(--space-2) !important;
+}
+
+.seguimiento-container .kanban-card-title {
+    font-weight: 600 !important;
+    color: var(--gray-900) !important;
+    margin: 0 !important;
+    font-size: 0.875rem !important;
+    flex: 1;
+}
+
+.seguimiento-container .kanban-card-body {
+    margin-bottom: var(--space-3) !important;
+}
+
+.seguimiento-container .kanban-card-footer {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: 0.75rem !important;
+    color: var(--gray-600) !important;
+    border-top: 1px solid var(--gray-100);
+    padding-top: var(--space-2);
+    margin-top: var(--space-3);
+}
+
+/* ==================== TIMELINE OPTIMIZADA ==================== */
+.seguimiento-container .timeline {
+    position: relative !important;
+    padding-left: var(--space-8) !important;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.seguimiento-container .timeline::before {
+    content: '';
+    position: absolute;
+    left: var(--space-4);
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-300), var(--gray-300));
+}
+
+.seguimiento-container .timeline-item {
+    position: relative !important;
+    margin-bottom: var(--space-6) !important;
+    animation: slideInRight 0.5s ease-out !important;
+}
+
+.seguimiento-container .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-8) + var(--space-3));
+    top: var(--space-1);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary-500);
+    border: 3px solid white;
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+}
+
+.seguimiento-container .timeline-content {
+    background: white !important;
+    padding: var(--space-4) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 1px solid var(--gray-200) !important;
+    position: relative;
+}
+
+.seguimiento-container .timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 16px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 8px 8px 0;
+    border-color: transparent white transparent transparent;
+}
+
+.seguimiento-container .timeline-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: var(--space-2) !important;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.seguimiento-container .timeline-title {
+    font-weight: 600 !important;
+    color: var(--gray-900) !important;
+    margin: 0 !important;
+    font-size: 0.875rem !important;
+}
+
+.seguimiento-container .timeline-date {
+    font-size: 0.75rem !important;
+    color: var(--gray-500) !important;
+    background: var(--gray-100);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius);
+}
+
+.seguimiento-container .timeline-body {
+    color: var(--gray-600) !important;
+    line-height: 1.6;
+}
+
+/* ==================== LOADING Y ESTADOS VACÍOS ==================== */
+.seguimiento-container .loading-container {
+    text-align: center !important;
+    padding: var(--space-12) !important;
+    color: var(--gray-500) !important;
+}
+
+.seguimiento-container .loading-spinner {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    border: 3px solid var(--gray-300) !important;
+    border-top: 3px solid var(--primary-500) !important;
+    border-radius: 50% !important;
+    animation: spin 1s linear infinite !important;
+    margin: 0 auto var(--space-4) auto !important;
+}
+
+.seguimiento-container .empty-state {
+    text-align: center !important;
+    padding: var(--space-12) !important;
+    color: var(--gray-500) !important;
+}
+
+.seguimiento-container .empty-icon {
+    font-size: 4rem !important;
+    color: var(--gray-300) !important;
+    margin-bottom: var(--space-4) !important;
+    animation: bounceIn 1s ease-out;
+}
+
+.seguimiento-container .empty-state h5 {
+    color: var(--gray-700) !important;
+    margin-bottom: var(--space-2) !important;
+    font-weight: 600 !important;
+}
+
+/* ==================== MODALES OPTIMIZADOS ==================== */
+.modal-animated .modal-content {
+    border: none !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-xl) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px) !important;
+    animation: bounceIn 0.3s ease-out;
+}
+
+.modal-animated .modal-header {
+    border-bottom: 1px solid var(--gray-200) !important;
+    background: linear-gradient(135deg, var(--gray-50), white) !important;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+}
+
+.modal-animated .modal-title {
+    color: var(--gray-800) !important;
+    font-weight: 600 !important;
+}
+
+/* ==================== NOTIFICACIONES/TOASTS ==================== */
+.toast-container {
+    z-index: var(--z-toast) !important;
+}
+
+.toast {
+    border-radius: var(--radius-lg) !important;
+    border: none !important;
+    box-shadow: var(--shadow-lg) !important;
+    backdrop-filter: blur(8px) !important;
+    animation: slideInRight 0.3s ease-out;
+}
+
+.toast-header {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.toast.toast-success {
+    border-left: 4px solid var(--success-500) !important;
+}
+
+.toast.toast-error {
+    border-left: 4px solid var(--danger-500) !important;
+}
+
+.toast.toast-warning {
+    border-left: 4px solid var(--warning-500) !important;
+}
+
+.toast.toast-info {
+    border-left: 4px solid var(--info-500) !important;
+}
+
+/* ==================== UTILIDADES ==================== */
+.seguimiento-container .text-gradient {
+    color: var(--primary-600) !important;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-500)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+.seguimiento-container .hover-lift {
+    transition: var(--transition) !important;
+}
+
+.seguimiento-container .hover-lift:hover {
+    transform: translate3d(0, -2px, 0) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.seguimiento-container .avatar-sm {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.875rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.seguimiento-container .text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.seguimiento-container .badge-sm {
+    font-size: 0.6rem;
+    padding: 0.25em 0.5em;
+}
+
+/* ==================== RESPONSIVE OPTIMIZADO ==================== */
+@media (max-width: 1200px) {
+    .seguimiento-container {
+        padding: 0 var(--space-4) !important;
+    }
+    
+    .seguimiento-container .kanban-board {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .seguimiento-container {
+        padding: 0 var(--space-3) !important;
+    }
+    
+    .seguimiento-container .page-header {
+        padding: var(--space-4) !important;
+        margin: calc(-1 * var(--space-3)) calc(-1 * var(--space-3)) var(--space-6) calc(-1 * var(--space-3)) !important;
+    }
+    
+    .seguimiento-container .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-4) !important;
+    }
+    
+    .seguimiento-container .filters-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-3) !important;
+    }
+    
+    .seguimiento-container .page-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .seguimiento-container .stats-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: var(--space-3) !important;
+        min-height: auto !important;
+        padding: var(--space-4) !important;
+    }
+    
+    .seguimiento-container .stats-icon {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    .seguimiento-container .kanban-board {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-4) !important;
+    }
+    
+    .seguimiento-container .table-responsive {
+        font-size: 0.75rem !important;
+    }
+    
+    .seguimiento-container .table tbody td {
+        padding: var(--space-2) var(--space-3) !important;
+    }
+    
+    .seguimiento-container .btn-group {
+        flex-direction: column !important;
+    }
+    
+    .seguimiento-container .btn-group .btn {
+        border-radius: var(--radius) !important;
+        margin-bottom: var(--space-1) !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .seguimiento-container .page-header {
+        text-align: center;
+    }
+    
+    .seguimiento-container .page-header .d-flex {
+        flex-direction: column !important;
+        gap: var(--space-4) !important;
+    }
+    
+    .seguimiento-container .timeline {
+        padding-left: var(--space-6) !important;
+    }
+    
+    .seguimiento-container .timeline-item::before {
+        left: calc(-1 * var(--space-6) + var(--space-2)) !important;
+    }
+    
+    .seguimiento-container .modal-dialog {
+        margin: var(--space-3) !important;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+    .seguimiento-container .btn,
+    .seguimiento-container .filters-section,
+    .seguimiento-container .modal,
+    .seguimiento-container .toast-container {
+        display: none !important;
+    }
+    
+    .seguimiento-container .stats-card,
+    .seguimiento-container .card {
+        box-shadow: none !important;
+        border: 1px solid var(--gray-400) !important;
+    }
+    
+    .seguimiento-container .table {
+        border-collapse: collapse !important;
+    }
+    
+    .seguimiento-container .table th,
+    .seguimiento-container .table td {
+        border: 1px solid var(--gray-400) !important;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+@media (prefers-reduced-motion: reduce) {
+    .seguimiento-container * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.seguimiento-container .btn:focus-visible,
+.seguimiento-container .form-control:focus-visible,
+.seguimiento-container .form-select:focus-visible {
+    outline: 2px solid var(--primary-500) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgb(59 130 246 / 0.1) !important;
+}
+
+.seguimiento-container .visually-hidden-focusable:focus {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+}
+
+/* ==================== CUSTOM SCROLLBAR ==================== */
+.seguimiento-container .timeline::-webkit-scrollbar,
+.seguimiento-container .table-responsive::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.seguimiento-container .timeline::-webkit-scrollbar-track,
+.seguimiento-container .table-responsive::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: var(--radius);
+}
+
+.seguimiento-container .timeline::-webkit-scrollbar-thumb,
+.seguimiento-container .table-responsive::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: var(--radius);
+}
+
+.seguimiento-container .timeline::-webkit-scrollbar-thumb:hover,
+.seguimiento-container .table-responsive::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-500);
+}

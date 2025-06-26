@@ -1,0 +1,690 @@
+/* ==================== DELEGADOS CSS - OPTIMIZADO ==================== */
+/* Sistema de Gestión Documental - Constructora Vial S.A. */
+/* @version 3.0.0 (Optimizada y Modernizada) */
+
+:root {
+    /* === PALETA DE COLORES MODERNA === */
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    --primary-700: #1d4ed8;
+    
+    --orange-50: #fff7ed;
+    --orange-100: #ffedd5;
+    --orange-500: #f97316;
+    --orange-600: #ea580c;
+    
+    --success-500: #10b981;
+    --warning-500: #f59e0b;
+    --danger-500: #ef4444;
+    --info-500: #06b6d4;
+    
+    /* === ESCALA DE GRISES === */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    
+    /* === SISTEMA DE DISEÑO === */
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* === ESPACIADO === */
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes delegation-glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(249, 115, 22, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.6); }
+}
+
+/* ==================== LAYOUT BASE ==================== */
+.main {
+    background: var(--gray-50);
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+.delegados-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* ==================== HEADER ==================== */
+.page-header {
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-8);
+    position: relative;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--orange-500);
+    border-radius: 2px;
+}
+
+.page-title {
+    background: linear-gradient(135deg, var(--orange-600), var(--orange-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.025em;
+}
+
+.page-subtitle {
+    color: var(--gray-600);
+    font-size: 1.125rem;
+    margin-bottom: var(--space-6);
+    line-height: 1.6;
+}
+
+/* ==================== ESTADÍSTICAS RÁPIDAS ==================== */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.stat-item {
+    background: white;
+    padding: var(--space-4);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+    border-left: 4px solid var(--orange-500);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange-500), var(--orange-600));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.stat-item:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-item.success {
+    border-left-color: var(--success-500);
+}
+
+.stat-item.success .stat-number {
+    color: var(--success-600);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--orange-600);
+    margin-bottom: var(--space-2);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* ==================== BARRA DE ACCIONES ==================== */
+.actions-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.actions-left,
+.actions-right {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+/* ==================== FILTROS ==================== */
+.filters-card {
+    margin-bottom: var(--space-6);
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.filters-card .card-header {
+    background: linear-gradient(135deg, var(--orange-50), var(--orange-100));
+    border-bottom: 1px solid var(--orange-200);
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    align-items: end;
+}
+
+.filter-search {
+    grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+    .filter-search {
+        grid-column: span 2;
+    }
+}
+
+/* ==================== TARJETAS ==================== */
+.card-animated {
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card-animated:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.card-animated .card-header {
+    background: white;
+    border-bottom: 1px solid var(--gray-200);
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* ==================== TABLA DE DELEGADOS ==================== */
+.delegados-table {
+    width: 100%;
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.delegados-table thead {
+    background: var(--orange-50);
+}
+
+.delegados-table th {
+    padding: var(--space-4);
+    font-weight: 600;
+    color: var(--gray-700);
+    border-bottom: 1px solid var(--orange-200);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.delegados-table td {
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+}
+
+.delegados-table tbody tr {
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.delegados-table tbody tr:hover {
+    background-color: var(--orange-50);
+}
+
+.delegados-table tbody tr.activa {
+    background-color: rgba(16, 185, 129, 0.05);
+    border-left: 4px solid var(--success-500);
+}
+
+.delegados-table tbody tr.proxima-vencer {
+    background-color: rgba(245, 158, 11, 0.05);
+    border-left: 4px solid var(--warning-500);
+    animation: delegation-glow 3s infinite;
+}
+
+.delegados-table tbody tr.expirada {
+    background-color: rgba(239, 68, 68, 0.05);
+    border-left: 4px solid var(--danger-500);
+    opacity: 0.7;
+}
+
+/* ==================== BADGES Y ESTADOS ==================== */
+.badge-activa {
+    background-color: var(--success-100);
+    color: var(--success-800);
+    border: 1px solid var(--success-300);
+}
+
+.badge-pendiente {
+    background-color: var(--warning-100);
+    color: var(--warning-800);
+    border: 1px solid var(--warning-300);
+}
+
+.badge-expirada {
+    background-color: var(--danger-100);
+    color: var(--danger-800);
+    border: 1px solid var(--danger-300);
+}
+
+.badge-revocada {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+}
+
+.badge-firma {
+    background-color: var(--primary-100);
+    color: var(--primary-800);
+    border: 1px solid var(--primary-300);
+}
+
+.badge-aprobacion {
+    background-color: var(--orange-100);
+    color: var(--orange-800);
+    border: 1px solid var(--orange-300);
+}
+
+.badge-revision {
+    background-color: var(--info-100);
+    color: var(--info-800);
+    border: 1px solid var(--info-300);
+}
+
+.badge-administracion {
+    background-color: var(--gray-100);
+    color: var(--gray-800);
+    border: 1px solid var(--gray-300);
+}
+
+/* ==================== INDICADORES DE TIEMPO ==================== */
+.tiempo-restante {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.tiempo-restante.critico {
+    color: var(--danger-600);
+    font-weight: 600;
+}
+
+.tiempo-restante.advertencia {
+    color: var(--warning-600);
+    font-weight: 500;
+}
+
+.tiempo-restante.normal {
+    color: var(--success-600);
+}
+
+/* ==================== PERMISOS Y ALCANCE ==================== */
+.permisos-container {
+    background: var(--gray-50);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    border: 1px solid var(--gray-200);
+}
+
+.permiso-item {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.permiso-item:last-child {
+    border-bottom: none;
+}
+
+.permiso-checkbox {
+    margin-right: var(--space-3);
+}
+
+.permiso-label {
+    flex-grow: 1;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.permiso-descripcion {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    margin-left: var(--space-6);
+    display: block;
+}
+
+/* ==================== PROGRESS BARS ==================== */
+.delegacion-progreso {
+    height: 6px;
+    background-color: var(--gray-200);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: var(--space-2);
+}
+
+.delegacion-progreso-barra {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success-500), var(--success-600));
+    border-radius: 3px;
+    transition: width 0.6s ease;
+}
+
+.delegacion-progreso-barra.warning {
+    background: linear-gradient(90deg, var(--warning-500), var(--warning-600));
+}
+
+.delegacion-progreso-barra.danger {
+    background: linear-gradient(90deg, var(--danger-500), var(--danger-600));
+}
+
+/* ==================== USUARIO AVATARS ==================== */
+.usuario-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--orange-100);
+    color: var(--orange-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-right: var(--space-2);
+}
+
+.usuario-info {
+    display: flex;
+    align-items: center;
+}
+
+.usuario-nombre {
+    font-weight: 500;
+    color: var(--gray-900);
+}
+
+.usuario-rol {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    display: block;
+}
+
+/* ==================== LOADING STATES ==================== */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8);
+    color: var(--gray-500);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--gray-200);
+    border-top: 3px solid var(--orange-500);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--space-4);
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ==================== MODALES ==================== */
+.modal-animated .modal-content {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.3s ease-out;
+}
+
+.modal-animated .modal-header {
+    background: linear-gradient(135deg, var(--orange-50), var(--orange-100));
+    border-bottom: 1px solid var(--orange-200);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* ==================== ALERTAS ESPECIALES ==================== */
+.alerta-vencimiento {
+    background: linear-gradient(135deg, var(--warning-50), var(--warning-100));
+    border: 1px solid var(--warning-200);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    color: var(--warning-800);
+}
+
+.alerta-expirada {
+    background: linear-gradient(135deg, var(--danger-50), var(--danger-100));
+    border: 1px solid var(--danger-200);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    color: var(--danger-800);
+}
+
+/* ==================== TIMELINE DE DELEGACIÓN ==================== */
+.delegacion-timeline {
+    position: relative;
+    padding-left: var(--space-6);
+}
+
+.delegacion-timeline::before {
+    content: '';
+    position: absolute;
+    left: var(--space-3);
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--orange-200);
+}
+
+.timeline-item-delegacion {
+    position: relative;
+    margin-bottom: var(--space-4);
+    background: white;
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-left: 3px solid var(--orange-500);
+}
+
+.timeline-item-delegacion::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-6) + var(--space-2));
+    top: var(--space-3);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--orange-500);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--orange-500);
+}
+
+/* ==================== BOTONES PERSONALIZADOS ==================== */
+.btn-orange-outline {
+    color: var(--orange-600);
+    border-color: var(--orange-300);
+    background-color: transparent;
+}
+
+.btn-orange-outline:hover {
+    background-color: var(--orange-500);
+    border-color: var(--orange-500);
+    color: white;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .delegados-container {
+        padding: 0 var(--space-4);
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .actions-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .actions-left,
+    .actions-right {
+        justify-content: center;
+    }
+    
+    .quick-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-search {
+        grid-column: 1;
+    }
+    
+    .delegados-table {
+        font-size: 0.875rem;
+    }
+    
+    .delegados-table th,
+    .delegados-table td {
+        padding: var(--space-2);
+    }
+    
+    .usuario-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-actions {
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+    
+    .card-actions .btn {
+        width: 100%;
+    }
+}
+
+/* ==================== UTILIDADES ==================== */
+.text-orange-600 {
+    color: var(--orange-600) !important;
+}
+
+.border-orange-200 {
+    border-color: var(--orange-200) !important;
+}
+
+.bg-orange-50 {
+    background-color: var(--orange-50) !important;
+}
+
+/* ==================== ACCESIBILIDAD ==================== */
+@media (prefers-reduced-motion: reduce) {
+    .card-animated,
+    .stat-item,
+    .loading-spinner,
+    .modal-animated .modal-content,
+    .delegados-table tbody tr.proxima-vencer {
+        animation: none;
+        transition: none;
+    }
+    
+    .stat-item:hover,
+    .card-animated:hover {
+        transform: none;
+    }
+}
+
+/* ==================== FOCUS STATES ==================== */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    border-color: var(--orange-300);
+}
+
+/* ==================== ESTADOS ESPECIALES DE FILA ==================== */
+.delegacion-urgente {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.1), transparent);
+}
+
+.delegacion-nueva {
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+}

@@ -1,0 +1,749 @@
+/* ==================== URGENTES CSS - OPTIMIZADO ==================== */
+/* Sistema de Gestión Documental - Constructora Vial S.A. */
+/* @version 3.0.0 (Optimizada y Modernizada) */
+
+:root {
+    /* === PALETA DE COLORES MODERNA === */
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    --primary-700: #1d4ed8;
+    
+    --danger-50: #fef2f2;
+    --danger-100: #fee2e2;
+    --danger-500: #ef4444;
+    --danger-600: #dc2626;
+    --danger-700: #b91c1c;
+    
+    --warning-50: #fffbeb;
+    --warning-100: #fef3c7;
+    --warning-500: #f59e0b;
+    --warning-600: #d97706;
+    
+    --success-500: #10b981;
+    --info-500: #06b6d4;
+    
+    /* === ESCALA DE GRISES === */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    
+    /* === SISTEMA DE DISEÑO === */
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* === ESPACIADO === */
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes urgent-pulse {
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+    }
+    50% { 
+        transform: scale(1.02); 
+        box-shadow: 0 0 25px rgba(220, 38, 38, 0.8);
+    }
+}
+
+@keyframes countdown-flash {
+    0%, 100% { background-color: var(--danger-500); }
+    50% { background-color: var(--danger-700); }
+}
+
+@keyframes urgent-glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.6); }
+}
+
+/* ==================== LAYOUT BASE ==================== */
+.main {
+    background: var(--gray-50);
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+.urgentes-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* ==================== HEADER ==================== */
+.page-header {
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-8);
+    position: relative;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--danger-500);
+    border-radius: 2px;
+    animation: urgent-glow 2s infinite;
+}
+
+.page-title {
+    background: linear-gradient(135deg, var(--danger-600), var(--danger-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.025em;
+}
+
+.page-subtitle {
+    color: var(--gray-600);
+    font-size: 1.125rem;
+    margin-bottom: var(--space-6);
+    line-height: 1.6;
+}
+
+/* ==================== ESTADÍSTICAS RÁPIDAS ==================== */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.stat-item {
+    background: white;
+    padding: var(--space-4);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+    border-left: 4px solid var(--danger-500);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--danger-500), var(--danger-600));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.stat-item:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-item.urgent {
+    border-left-color: var(--danger-600);
+    animation: urgent-pulse 3s infinite;
+}
+
+.stat-item.urgent .stat-number {
+    color: var(--danger-600);
+    font-weight: 800;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--danger-600);
+    margin-bottom: var(--space-2);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* ==================== ALERTAS CRÍTICAS ==================== */
+.alerta-critica {
+    background: linear-gradient(135deg, var(--danger-50), var(--danger-100));
+    border: 2px solid var(--danger-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    animation: urgent-glow 2s infinite;
+}
+
+.alerta-vencimiento {
+    background: linear-gradient(135deg, var(--warning-50), var(--warning-100));
+    border: 2px solid var(--warning-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.alerta-escalamiento {
+    background: linear-gradient(135deg, var(--danger-50), var(--danger-100));
+    border: 2px solid var(--danger-400);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    animation: urgent-pulse 2s infinite;
+}
+
+/* ==================== FILTROS RÁPIDOS ==================== */
+.quick-filters {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+.quick-filters .btn-check:checked + .btn-outline-danger {
+    background-color: var(--danger-500);
+    border-color: var(--danger-500);
+    color: white;
+}
+
+.quick-filters .btn-outline-danger {
+    border-color: var(--danger-300);
+    color: var(--danger-600);
+}
+
+.quick-filters .btn-outline-danger:hover {
+    background-color: var(--danger-500);
+    border-color: var(--danger-500);
+    color: white;
+}
+
+/* ==================== BARRA DE ACCIONES ==================== */
+.actions-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.actions-left,
+.actions-right {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+/* ==================== FILTROS ==================== */
+.filters-card {
+    margin-bottom: var(--space-6);
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.filters-card .card-header {
+    background: linear-gradient(135deg, var(--danger-50), var(--danger-100));
+    border-bottom: 1px solid var(--danger-200);
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    align-items: end;
+}
+
+.filter-search {
+    grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+    .filter-search {
+        grid-column: span 2;
+    }
+}
+
+/* ==================== TARJETAS ==================== */
+.card-animated {
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card-animated:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.card-animated .card-header {
+    background: white;
+    border-bottom: 1px solid var(--gray-200);
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* ==================== TABLA DE URGENTES ==================== */
+.urgentes-table {
+    width: 100%;
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.urgentes-table thead {
+    background: var(--danger-50);
+}
+
+.urgentes-table th {
+    padding: var(--space-4);
+    font-weight: 600;
+    color: var(--gray-700);
+    border-bottom: 1px solid var(--danger-200);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.urgentes-table td {
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+}
+
+.urgentes-table tbody tr {
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.urgentes-table tbody tr:hover {
+    background-color: var(--danger-50);
+}
+
+.urgentes-table tbody tr.critico {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--danger-600);
+    animation: urgent-pulse 3s infinite;
+}
+
+.urgentes-table tbody tr.vencido {
+    background-color: rgba(185, 28, 28, 0.15);
+    border-left: 4px solid var(--danger-700);
+}
+
+.urgentes-table tbody tr.resuelto {
+    background-color: rgba(16, 185, 129, 0.05);
+    border-left: 4px solid var(--success-500);
+    opacity: 0.7;
+}
+
+/* ==================== BADGES Y ESTADOS ==================== */
+.badge-pendiente {
+    background-color: var(--danger-100);
+    color: var(--danger-800);
+    border: 1px solid var(--danger-300);
+}
+
+.badge-en-proceso {
+    background-color: var(--warning-100);
+    color: var(--warning-800);
+    border: 1px solid var(--warning-300);
+}
+
+.badge-resuelto {
+    background-color: var(--success-100);
+    color: var(--success-800);
+    border: 1px solid var(--success-300);
+}
+
+.badge-escalado {
+    background-color: var(--danger-100);
+    color: var(--danger-800);
+    border: 1px solid var(--danger-300);
+    animation: urgent-glow 2s infinite;
+}
+
+.badge-critico {
+    background-color: var(--danger-200);
+    color: var(--danger-900);
+    border: 1px solid var(--danger-400);
+    font-weight: 700;
+    animation: urgent-pulse 2s infinite;
+}
+
+.badge-alto {
+    background-color: var(--warning-100);
+    color: var(--warning-800);
+    border: 1px solid var(--warning-300);
+}
+
+.badge-medio {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+}
+
+/* ==================== INDICADORES DE TIEMPO ==================== */
+.tiempo-restante {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius);
+    text-align: center;
+    min-width: 80px;
+    display: inline-block;
+}
+
+.tiempo-restante.vencido {
+    background-color: var(--danger-600);
+    color: white;
+    animation: countdown-flash 1s infinite;
+}
+
+.tiempo-restante.critico {
+    background-color: var(--danger-100);
+    color: var(--danger-800);
+    border: 1px solid var(--danger-300);
+}
+
+.tiempo-restante.advertencia {
+    background-color: var(--warning-100);
+    color: var(--warning-800);
+    border: 1px solid var(--warning-300);
+}
+
+.tiempo-restante.normal {
+    background-color: var(--success-100);
+    color: var(--success-800);
+    border: 1px solid var(--success-300);
+}
+
+/* ==================== COUNTDOWN TIMER ==================== */
+.countdown-timer {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.countdown-timer.critico {
+    color: var(--danger-600);
+    animation: urgent-pulse 1s infinite;
+}
+
+.countdown-timer.vencido {
+    color: var(--danger-700);
+    background-color: var(--danger-100);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius);
+    animation: countdown-flash 1s infinite;
+}
+
+/* ==================== PROGRESS BARS ==================== */
+.urgencia-progreso {
+    height: 8px;
+    background-color: var(--gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: var(--space-2);
+}
+
+.urgencia-progreso-barra {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.urgencia-progreso-barra.critico {
+    background: linear-gradient(90deg, var(--danger-600), var(--danger-500));
+}
+
+.urgencia-progreso-barra.alto {
+    background: linear-gradient(90deg, var(--warning-500), var(--warning-600));
+}
+
+.urgencia-progreso-barra.medio {
+    background: linear-gradient(90deg, var(--success-500), var(--success-600));
+}
+
+/* ==================== LOADING STATES ==================== */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8);
+    color: var(--gray-500);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--gray-200);
+    border-top: 3px solid var(--danger-500);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--space-4);
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ==================== MODALES ==================== */
+.modal-animated .modal-content {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.3s ease-out;
+}
+
+.modal-animated .modal-header {
+    background: linear-gradient(135deg, var(--danger-50), var(--danger-100));
+    border-bottom: 1px solid var(--danger-200);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* ==================== ICONOS Y INDICADORES ==================== */
+.icono-urgencia {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-right: var(--space-2);
+}
+
+.icono-urgencia.critico {
+    background-color: var(--danger-600);
+    color: white;
+    animation: urgent-pulse 2s infinite;
+}
+
+.icono-urgencia.alto {
+    background-color: var(--warning-500);
+    color: white;
+}
+
+.icono-urgencia.medio {
+    background-color: var(--gray-500);
+    color: white;
+}
+
+/* ==================== NOTIFICACIONES EMERGENTES ==================== */
+.notificacion-urgente {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--danger-500), var(--danger-600));
+    color: white;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 1050;
+    animation: slideIn 0.5s ease-out;
+    max-width: 350px;
+}
+
+.notificacion-urgente .notificacion-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.notificacion-urgente .notificacion-icono {
+    font-size: 1.5rem;
+    margin-right: var(--space-2);
+}
+
+.notificacion-urgente .notificacion-titulo {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.notificacion-urgente .btn-close {
+    filter: invert(1);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .urgentes-container {
+        padding: 0 var(--space-4);
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .actions-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .actions-left,
+    .actions-right {
+        justify-content: center;
+    }
+    
+    .quick-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .quick-filters {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-search {
+        grid-column: 1;
+    }
+    
+    .urgentes-table {
+        font-size: 0.875rem;
+    }
+    
+    .urgentes-table th,
+    .urgentes-table td {
+        padding: var(--space-2);
+    }
+    
+    .tiempo-restante {
+        font-size: 0.75rem;
+        min-width: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-actions {
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+    
+    .card-actions .btn {
+        width: 100%;
+    }
+    
+    .notificacion-urgente {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+    }
+}
+
+/* ==================== UTILIDADES ==================== */
+.text-danger-600 {
+    color: var(--danger-600) !important;
+}
+
+.border-danger-200 {
+    border-color: var(--danger-200) !important;
+}
+
+.bg-danger-50 {
+    background-color: var(--danger-50) !important;
+}
+
+/* ==================== ACCESIBILIDAD ==================== */
+@media (prefers-reduced-motion: reduce) {
+    .card-animated,
+    .stat-item,
+    .loading-spinner,
+    .modal-animated .modal-content,
+    .urgentes-table tbody tr.critico,
+    .badge-escalado,
+    .badge-critico,
+    .tiempo-restante.vencido,
+    .countdown-timer.critico,
+    .icono-urgencia.critico,
+    .alerta-critica,
+    .alerta-escalamiento {
+        animation: none;
+        transition: none;
+    }
+    
+    .stat-item:hover,
+    .card-animated:hover {
+        transform: none;
+    }
+}
+
+/* ==================== FOCUS STATES ==================== */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    border-color: var(--danger-300);
+}
+
+/* ==================== ESTADOS ESPECIALES ==================== */
+.documento-escalado {
+    background: linear-gradient(90deg, rgba(185, 28, 28, 0.15), transparent);
+}
+
+.documento-vencido-critico {
+    background: linear-gradient(90deg, rgba(185, 28, 28, 0.2), transparent);
+    animation: urgent-pulse 2s infinite;
+}
+
+.documento-resuelto-recientemente {
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+}
